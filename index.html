@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BerkayX Menu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="menu-container" class="menu-hidden">
+        <div class="menu-header">
+            <div class="menu-title">BerkayX Menu</div>
+            <div class="menu-subtitle">Owner Baba</div>
+            <div class="close-btn" onclick="closeMenu()">×</div>
+        </div>
+        
+        <div class="menu-content">
+            <div class="tab-section">
+                <div class="tab active" data-tab="main" onclick="switchTab('main')">Ana Menü</div>
+                <div class="tab" data-tab="vehicle" onclick="switchTab('vehicle')">Araç Menüsü</div>
+                <div class="tab" data-tab="troll" onclick="switchTab('troll')">Troll Menüsü</div>
+                <div class="tab" data-tab="erp" onclick="switchTab('erp')">ERP Menüsü</div>
+                <div class="tab" data-tab="anticheat" onclick="switchTab('anticheat')">Anticheat Check</div>
+                <div class="tab" data-tab="weapon" onclick="switchTab('weapon')">Weapon</div>
+            </div>
+            
+            <div class="content-section">
+                <!-- Ana Menü Tab -->
+                <div id="main-tab" class="tab-content active">
+                    <div class="section">
+                        <h3>Ana Menü</h3>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="id-goster" onchange="toggleIdShow()">
+                            <label for="id-goster">ID Göster/Gizle - [SAFE]</label>
+                        </div>
+                        <button onclick="executeFunction('tpm')">Tpm - Safe</button>
+                        <button onclick="executeFunction('armor')">Armor - Safe</button>
+                        <button onclick="executeFunction('revive')">Revive - Safe</button>
+                        <button onclick="executeFunction('randomSkin')">Random Skin - Safe</button>
+                        <button onclick="closeMenu()">Menü Kapat</button>
+                    </div>
+                </div>
+                
+                <!-- Araç Menüsü Tab -->
+                <div id="vehicle-tab" class="tab-content">
+                    <div class="section">
+                        <h3>Araç Oluştur</h3>
+                        <p>Araç Modeli Girin (örnek: sultan)</p>
+                        <input type="text" id="vehicle-model" placeholder="Örn: sultan">
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="give-key">
+                            <label for="give-key">Araç Anahtarı Alınsın mı?</label>
+                        </div>
+                        <button onclick="createVehicle()">Aracı Oluştur</button>
+                        <button onclick="executeFunction('dbCarSteal')">Database Araba Hortlat</button>
+                        <button onclick="executeFunction('repairVehicle')">Aracı Tamir Et</button>
+                        <button onclick="executeFunction('maxTuning')">Max Tuning</button>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="speedboost" onchange="toggleSpeedboost()">
+                            <label for="speedboost">Speedboost SHIFT CTRL</label>
+                        </div>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="vehicle-god" onchange="toggleVehicleGod()">
+                            <label for="vehicle-god">Vehicle Godmode</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Troll Menüsü Tab -->
+                <div id="troll-tab" class="tab-content">
+                    <div class="section">
+                        <h3>Oyunculara Özel</h3>
+                        <p>Araç Ram</p>
+                        <input type="text" id="ram-target-id" placeholder="Hedef Oyuncu ID">
+                        <button onclick="ramPlayer()">Oyuncuya Ram</button>
+                        
+                        <p>Vehicle Spawn</p>
+                        <input type="text" id="vehicle-spawn-model" placeholder="Vehicle Model">
+                        <button onclick="startVehicleRain()">Başlat</button>
+                        <button onclick="stopVehicleRain()">Durdur</button>
+                        
+                        <p>Helikopter Spawn</p>
+                        <input type="text" id="helicopter-target-id" placeholder="Helikopter Yağmuru ID">
+                        <button onclick="startHelicopterRain()">Helikopter Yağmuru Başlat</button>
+                        <button onclick="stopHelicopterRain()">Helikopter Yağmuru Durdur</button>
+                        
+                        <p>Freeze Oyuncu</p>
+                        <input type="text" id="freeze-target-id" placeholder="Hedef Oyuncu ID">
+                        <button onclick="freezePlayer()">Freeze Player</button>
+                        
+                        <p>NPC Basma</p>
+                        <input type="text" id="ped-spam-target-id" placeholder="NPC Basma Hedef ID">
+                        <button onclick="startPedSpam()">Ped Basma Başlat</button>
+                        <button onclick="stopPedSpam()">Ped Basma Durdur</button>
+                        
+                        <p>NPC Spawn</p>
+                        <input type="text" id="npc-target-id" placeholder="Hedef Oyuncu ID">
+                        <button onclick="startNpcSpawn()">NPC'leri Başlat</button>
+                        <button onclick="stopNpcSpawn()">NPC'leri Durdur</button>
+                        
+                        <p>Bring</p>
+                        <input type="text" id="bring-target-id" placeholder="Bring Hedef Oyuncu ID">
+                        <button onclick="bringPlayer()">Kendine Bring</button>
+                        
+                        <p>Takip</p>
+                        <input type="text" id="follow-target-id" placeholder="Takip ID">
+                        <button onclick="followPlayer()">Takip Et</button>
+                        <button onclick="followAndOpenInventory()">Takip Et ve Envanter Aç</button>
+                        <button onclick="openNearbyInventory()">Yanındaki Oyuncunun Envanterini Aç</button>
+                        
+                        <p>Kafes</p>
+                        <input type="text" id="cage-target-id" placeholder="Kafes Hedef Oyuncu ID">
+                        <button onclick="cagePlayer()">Oyuncuyu Kafese Kapat</button>
+                        
+                        <p>Blackhole</p>
+                        <input type="text" id="blackhole-target-id" placeholder="Hedef Oyuncu ID">
+                        <button onclick="startBlackhole()">Blackhole Başlat</button>
+                        <button onclick="stopBlackhole()">Blackhole Durdur</button>
+                        <button onclick="spawnVehicleAtTarget()">Araç Spawn</button>
+                        <button onclick="startBlackholeV2()">BlackholeV2 Başlat</button>
+                        <button onclick="stopBlackholeV2()">BlackholeV2 Durdur</button>
+                        
+                        <p>BringV2 Exploit</p>
+                        <input type="text" id="bringv2-target-id" placeholder="Hedef ID">
+                        <button onclick="startBringV2()">BringV2 Başlat</button>
+                        <button onclick="allBring()">All Bring - Risky</button>
+                    </div>
+                </div>
+                
+                <!-- ERP Menüsü Tab -->
+                <div id="erp-tab" class="tab-content">
+                    <div class="section">
+                        <h3>ERP İşlemleri</h3>
+                        <input type="text" id="erp-target-id" placeholder="Hedef Oyuncu ID">
+                        <button onclick="applyERPAnimation()">ID'ye Animasyon Uygula / Bırak</button>
+                        <button onclick="erpNearby()">Yakındakını Becer</button>
+                        <button onclick="erpExhaust()">Yakındakı Egzozu Becer</button>
+                    </div>
+                </div>
+                
+                <!-- Anticheat Check Tab -->
+                <div id="anticheat-tab" class="tab-content">
+                    <div class="section">
+                        <h3>Anticheat Checker</h3>
+                        <button onclick="scanElectron()">Electron Anticheat Taraması Yap</button>
+                        <button onclick="scanFiveGuard()">FiveGuard Taraması Yap</button>
+                        <button onclick="toggleElectron()">Electron Anticheat Durdur/Başlat</button>
+                        <button onclick="toggleFiveGuard()">FiveGuard Anticheat Durdur/Başlat</button>
+                        <button onclick="toggleZCN()">ZCN-FirstBlock Durdur/Başlat</button>
+                    </div>
+                </div>
+                
+                <!-- Weapon Tab -->
+                <div id="weapon-tab" class="tab-content">
+                    <div class="section">
+                        <h3>Weapon</h3>
+                        <input type="text" id="weapon-name" placeholder="weapon_pistol">
+                        <p>E tuşu ile silahı aktif/deaktif edebilirsiniz</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
